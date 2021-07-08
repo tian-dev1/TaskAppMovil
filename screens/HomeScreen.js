@@ -2,9 +2,15 @@ import React, {useEffect} from 'react'
 import {View, Text} from 'react-native'
 
 const HomeScreen = () => {
+
+    const loadTasks = async () => {
+        const  res = await fetch('http://10.0.2.2:3000/tasks')
+        const data = await res.json()
+        console.log(data);
+    }
     
     useEffect(() =>{
-        console.log("Cargo");
+        loadTasks()
     }, [])
     return(
         <View>
