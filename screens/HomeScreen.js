@@ -1,21 +1,26 @@
-import React, {useEffect} from 'react'
-import {View, Text} from 'react-native'
+import React, {useEffect, useState} from 'react'
+import {View} from 'react-native'
+import { getTasks } from '../api'
+import Layout from '../components/Layout'
+import TaskList from '../components/TaskList'
 
 const HomeScreen = () => {
 
+    const [tasks, setTasks] = useState([]) 
+
     const loadTasks = async () => {
-        const  res = await fetch('http://10.0.2.2:3000/tasks')
-        const data = await res.json()
-        console.log(data);
+        const data = await getTasks()
+        setTasks(data)
     }
     
     useEffect(() =>{
         loadTasks()
     }, [])
+
     return(
-        <View>
-            <Text>Home Screen!</Text>
-        </View>
+        <Layout>
+            <TaskList tasks={tasks}/>
+        </Layout>
   )
 }
 
