@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react'
 import {View, Text} from 'react-native'
+import { getTasks } from '../api'
 
 const HomeScreen = () => {
 
     const loadTasks = async () => {
-        const  res = await fetch('http://10.0.2.2:3000/tasks')
-        const data = await res.json()
+        const data = await getTasks()
         console.log(data);
     }
     
